@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import { Context } from "../../Context/ContextWrapper";
 import Service from "../../Services/Service";
 import { BuyToken } from "../Components/BuyTokenForm/BuyToken";
+import { MinusMinute } from "../Components/MinusMinuteForm/MinusMinute";
 import { TakeToken } from "../Components/TakeTokensForm/TakeToken";
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
 
     const [balance, setBalance] = useState<number>(0);
     const [ethBalance, setEthBalance] = useState<number>(0);
+    const [tokenPrice, setTokenPrice] = useState<number>(0);
 
     const balanceUserHandler = async (e: any) => {
         e.preventDefault();
@@ -20,25 +22,28 @@ const Home = () => {
         const ethBalance = ethData / 10 ** 18;
         setBalance(balance);
         setEthBalance(ethBalance);
+        setTokenPrice(await Service.getTokenPrice(user.wallet));
     }
     return (
-        <div className="text-center mt-5" style={{fontSize: "1.5rem"}}>
-            {
-                user.role === "3" ? (
-                    <h2>Вы администратор</h2>
-                ) : undefined
-            }
+        <div className="text-center mt-5" style={{ fontSize: "1.5rem" }}>
             {
                 <>
                     <p>Ваш логин: {user.login}</p>
                     <p>Ваш адрес: {user.wallet}</p>
                     <span>У вас: {balance} CMT   </span>
                     <p>Ваш баланс: {ethBalance} ETH </p>
+                    <p>Цена токена: {tokenPrice / 10 ** 18} ETH</p>
                     <p>Вы находитесь в вайтлисте: {user.role === "1" ? "Да" : "Нет"}</p>
                     <Button onClick={balanceUserHandler} variant='dark'>Узнать баланс</Button>
                     <BuyToken address={user.wallet}></BuyToken>
-                    
+
                 </>
+            }
+            {
+                user.role === "3" ? 
+                (
+                    <MinusMinute address={user.wallet}></MinusMinute>
+                ): undefined
             }
             {
                 user.role === "2" ?
