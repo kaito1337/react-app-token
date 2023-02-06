@@ -5,10 +5,10 @@ export const Header = () => {
     return (
         <Navbar bg="dark">
             <Container>
-                <Navbar.Brand href="/">Navbar</Navbar.Brand>
+                <Navbar.Brand href="/">Навигационная панель</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Link to="/">Home</Link>
-                    <Link to="/login">Sign in</Link>
+                    <Link to="/">Главная страница</Link>
+                    <Link to="/login">Авторизироваться</Link>
                 </Nav>
             </Container>
         </Navbar>
