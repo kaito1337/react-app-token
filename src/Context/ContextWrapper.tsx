@@ -10,10 +10,9 @@ export const ContextWrapper: FC<IProps> = ({children}) => {
     const initialState = {
         wallet: "",
         login: "",
-        white: false,
-        dev: false,
+        role: "",
         balance: 0,
-
+        ethBalance: 0,
     }
 
     const [user, setUser] = useState(initialState);

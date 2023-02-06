@@ -13,9 +13,9 @@ interface IProps {
 interface IUser {
     wallet: string,
     login: string,
-    white: boolean,
-    dev: boolean,
+    role: string,
     balance: number,
+    ethBalance: number;
 }
 
 export type {

@@ -11,7 +11,7 @@ export const BuyToken: FC<BuyTokenForm> = ({ address }) => {
     const buyTokenHandler = async (e: any) => {
         e.preventDefault();
         const { target } = e;
-        const data = await Service.buyToken(target[0], address)
+        const data = await Service.buyToken(target[0].value, address)
         console.log(data)
     }
 
@@ -21,7 +21,7 @@ export const BuyToken: FC<BuyTokenForm> = ({ address }) => {
 
             <Form.Group className="mb-3">
                 <Form.Label>Количество</Form.Label>
-                <Form.Control type="text" placeholder="Введите количество" />
+                <Form.Control type="number" placeholder="Введите количество" />
             </Form.Group>
 
             <Button variant="dark" type="submit">

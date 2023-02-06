@@ -1,5 +1,10 @@
 [
 	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -22,31 +27,6 @@
 			}
 		],
 		"name": "Approval",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "value",
-				"type": "uint256"
-			}
-		],
-		"name": "Transfer",
 		"type": "event"
 	},
 	{
@@ -129,6 +109,13 @@
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "minusMinute",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "string",
@@ -203,6 +190,31 @@
 		"type": "function"
 	},
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "value",
+				"type": "uint256"
+			}
+		],
+		"name": "Transfer",
+		"type": "event"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -230,11 +242,6 @@
 		],
 		"stateMutability": "nonpayable",
 		"type": "function"
-	},
-	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
 	},
 	{
 		"inputs": [
@@ -293,14 +300,9 @@
 						"type": "uint256"
 					},
 					{
-						"internalType": "bool",
-						"name": "white",
-						"type": "bool"
-					},
-					{
-						"internalType": "bool",
-						"name": "dev",
-						"type": "bool"
+						"internalType": "enum Contract.Role",
+						"name": "role",
+						"type": "uint8"
 					}
 				],
 				"internalType": "struct Contract.User",
@@ -369,6 +371,19 @@
 	},
 	{
 		"inputs": [],
+		"name": "getBalance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "name",
 		"outputs": [
 			{
@@ -383,6 +398,19 @@
 	{
 		"inputs": [],
 		"name": "requests",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "returnWhitelist",
 		"outputs": [
 			{
 				"internalType": "address[]",
@@ -414,25 +442,6 @@
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "userIsDev",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
@@ -483,14 +492,9 @@
 				"type": "uint256"
 			},
 			{
-				"internalType": "bool",
-				"name": "white",
-				"type": "bool"
-			},
-			{
-				"internalType": "bool",
-				"name": "dev",
-				"type": "bool"
+				"internalType": "enum Contract.Role",
+				"name": "role",
+				"type": "uint8"
 			}
 		],
 		"stateMutability": "view",
@@ -516,13 +520,7 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_wallet",
-				"type": "address"
-			}
-		],
+		"inputs": [],
 		"name": "viewDevTokens",
 		"outputs": [
 			{

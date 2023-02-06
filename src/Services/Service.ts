@@ -3,8 +3,16 @@ import ABI from "./ABI.json"
 
 class Service {
     web3 = new Web3("http://localhost:8545");
-    contract = new this.web3.eth.Contract(ABI as any, "0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e");
-    admin = '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266';
+    contract = new this.web3.eth.Contract(ABI as any, "0xc39F07be5a687a90a0BF5a3881cecd4B9509801e");
+
+    async register(login: string, password: string, address: string) {
+        try {
+            return await this.contract.methods.register(login, password).send({ from: address });
+        } catch (e) {
+            console.log(e);
+            
+        }
+    }
 
     async auth(login: string, password: string, address: string) {
         try {
@@ -22,27 +30,19 @@ class Service {
         }
     }
 
-    async approve(wallet: string){
-        try{
-            return await this.contract.methods.approve(wallet, 9999999).send({from: this.admin});
-        }catch(e){
+    async approve(wallet: string, address: string) {
+        try {
+            return await this.contract.methods.approve(wallet, wallet).send({ from: address });
+        } catch (e) {
             console.log(e)
         }
     }
 
     async buyToken(value: number, address: string) {
         try {
-            return await this.contract.methods.buyToken().send({ from: address, value: value });
+            return await this.contract.methods.buyToken().send({ from: address, value: value * 10**18 });
         } catch (e) {
             console.log(e)
-        }
-    }
-
-    async register(login: string, password: string, address: string) {
-        try {
-            return await this.contract.methods.register(login, password).send({ from: address });
-        } catch (e) {
-            console.log(e);
         }
     }
 
@@ -51,6 +51,22 @@ class Service {
             return await this.contract.methods.takeTokens().send({ from: address });
         } catch (e) {
             console.log(e)
+        }
+    }
+
+    async viewDevTokens(address: string){
+        try{
+            return await this.contract.methods.viewDevTokens().call({from: address});
+        }catch(e){
+            console.log(e);
+        }
+    }
+
+    async getBalance(address:string){
+        try{
+            return await this.contract.methods.getBalance().call({from: address});
+        }catch(e){
+            console.log(e);
         }
     }
 }

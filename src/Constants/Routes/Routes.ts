@@ -13,11 +13,11 @@ export const Routes: IRoutes[] = [
         page: Login
     },
     {
-        path: '/',
+        path: '/home',
         page: Home
     },
     {
-        path: '/registration',
+        path: '/',
         page: Registration
     }
 ]

@@ -17,7 +17,7 @@ const Login = () => {
         const data = await Service.auth(target[0].value, target[1].value, wallet)
         if(data){
             getUser({wallet, ...data});
-            navigation.push('/');
+            navigation.push('/home');
         }
         console.log(data)
     }
@@ -36,7 +36,7 @@ const Login = () => {
                 <Form.Control type="password" placeholder="Password" />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button variant="dark" type="submit">
                 Submit
             </Button>
         </Form>
