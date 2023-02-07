@@ -17,7 +17,7 @@ export const Routes: IRoutes[] = [
         page: Home
     },
     {
-        path: '/',
+        path: '/registration',
         page: Registration
     }
 ]

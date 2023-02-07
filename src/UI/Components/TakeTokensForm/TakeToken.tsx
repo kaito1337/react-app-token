@@ -25,9 +25,8 @@ export const TakeToken: FC<TakeTokenForm> = ({ address }) => {
     return (
         <Form onSubmit={TakeTokenHandler} style={{ width: "15rem", margin: "0 auto", marginTop: "5rem" }}>
             <h2 className="text-center mb-4">Взять доступные токены</h2>
-            <p>Вам доступно: {tokenDev}
-                <Button onClick={tokenDevHandler} variant='dark'>Узнать количество</Button>
-            </p>
+            <p>Вам доступно: {tokenDev} CMT </p>
+            <Button onClick={tokenDevHandler} variant='dark'>Узнать количество</Button>
             <Button variant="dark" type="submit">
                 Взять токены
             </Button>

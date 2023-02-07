@@ -21,6 +21,10 @@ export const ContextWrapper: FC<IProps> = ({children}) => {
         setUser(user);
     }
 
+    const logoutUser = () => {
+        setUser(initialState);
+    }
+
     const getBalance = async () => {
         await Service.balanceOf(user.wallet);
     }
@@ -28,7 +32,8 @@ export const ContextWrapper: FC<IProps> = ({children}) => {
     const values = {
         user,
         getUser,
-        getBalance
+        getBalance,
+        logoutUser
     }
 
     return (

@@ -4,6 +4,7 @@ interface IValues {
     user: IUser;
     getUser(user: IUser): void;
     getBalance(): Promise<void>;
+    logoutUser(): void;
 }
 
 interface IProps {

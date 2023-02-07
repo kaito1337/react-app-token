@@ -4,7 +4,10 @@ import { Context } from "../../Context/ContextWrapper";
 import Service from "../../Services/Service";
 import { BuyToken } from "../Components/BuyTokenForm/BuyToken";
 import { MinusMinute } from "../Components/MinusMinuteForm/MinusMinute";
+import { RequestWhitelist } from "../Components/RequestWhitelistForm/RequestWhitelist";
+import { SendRequest } from "../Components/SendRequestForm/SendRequest";
 import { TakeToken } from "../Components/TakeTokensForm/TakeToken";
+import { Whitelist } from "../Components/WhitelistForm/Whitelist";
 
 const Home = () => {
 
@@ -27,28 +30,44 @@ const Home = () => {
     return (
         <div className="text-center mt-5" style={{ fontSize: "1.5rem" }}>
             {
-                <>
-                    <p>Ваш логин: {user.login}</p>
-                    <p>Ваш адрес: {user.wallet}</p>
-                    <span>У вас: {balance} CMT   </span>
-                    <p>Ваш баланс: {ethBalance} ETH </p>
-                    <p>Цена токена: {tokenPrice / 10 ** 18} ETH</p>
-                    <p>Вы находитесь в вайтлисте: {user.role === "1" ? "Да" : "Нет"}</p>
-                    <Button onClick={balanceUserHandler} variant='dark'>Узнать баланс</Button>
-                    <BuyToken address={user.wallet}></BuyToken>
+                    <>
+                        <p>Ваш логин: {user.login}</p>
+                        <p>Ваш адрес: {user.wallet}</p>
+                        <p>Ваша роль: {user.role === "0" || user.role === "1" ? "Пользователь" : user.role === "2" ? "Разработчик" : "Администратор"}</p>
+                        <span>У вас: {balance} CMT   </span>
+                        <p>Ваш баланс: {ethBalance} ETH </p>
+                        <p>Цена токена: {tokenPrice / 10 ** 18} ETH</p>
+                        <p>Вы находитесь в вайтлисте: {user.role === "1" ? "Да" : "Нет"}</p>
+                        <Button onClick={balanceUserHandler} variant='dark'>Узнать баланс</Button>
+                        {(user.role !== "3" && "1") ? 
+                        (
+                            <>
+                            <SendRequest address={user.wallet}/>
+                            </>
+                        ) : undefined }
+                        {user.role !== "3" ? 
+                        (
+                            <BuyToken address={user.wallet}/>
+                        ) : undefined }
 
-                </>
+                    </>
             }
             {
-                user.role === "3" ? 
-                (
-                    <MinusMinute address={user.wallet}></MinusMinute>
-                ): undefined
+                user.role === "3" ?
+                    (
+                        <>
+                        <MinusMinute address={user.wallet}/>
+                        <div>
+                        <RequestWhitelist address={user.wallet}/>
+                        </div>
+                        <Whitelist address={user.wallet}/>
+                        </>
+                    ) : undefined
             }
             {
                 user.role === "2" ?
                     (
-                        <TakeToken address={user.wallet}></TakeToken>
+                        <TakeToken address={user.wallet}/>
                     ) : undefined
             }
         </div>

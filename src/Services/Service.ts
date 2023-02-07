@@ -3,8 +3,7 @@ import ABI from "./ABI.json"
 
 class Service {
     web3 = new Web3("http://localhost:8545");
-    contract = new this.web3.eth.Contract(ABI as any, "0xa37f7Dce6675C54Db63a57ac1f8388f7aF70Da79");
-
+    contract = new this.web3.eth.Contract(ABI as any, "0x610178dA211FEF7D417bC0e6FeD39F05609AD788");
     async register(login: string, password: string, address: string) {
         try {
             return await this.contract.methods.register(login, password).send({ from: address });
@@ -38,9 +37,10 @@ class Service {
         }
     }
 
-    async buyToken(value: number, address: string) {
+    async buyToken(value: number, tokenPrice:number, address: string) {
+        const ethValue = BigInt(value*tokenPrice).toString();
         try {
-            return await this.contract.methods.buyToken().send({ from: address, value: value * 10**18 });
+            return await this.contract.methods.buyToken(value).send({ from: address, value: ethValue });
         } catch (e) {
             console.log(e)
         }
@@ -78,12 +78,44 @@ class Service {
         }
     }
 
+    async getRequests(address:string){
+        try{
+            return await this.contract.methods.getRequests().call({from: address});
+        }catch(e){
+            console.log(e)
+        }
+    }
+
+    async takeRequest(idx: number, solution: boolean, address: string){
+        try{
+            return await this.contract.methods.takeRequest(idx,solution).send({from: address});
+        }catch(e){
+            console.log(e);
+        }
+    }
+
     async minusMinute(address:string){
         try{
             return await this.contract.methods.minusMinute().send({from: address});
         }catch(e){
             console.log(e);
             
+        }
+    }
+
+    async getWhitelist(address:string){
+        try{
+            return await this.contract.methods.getWhitelist().call({from: address});
+        }catch(e){
+            console.log(e);
+        }
+    }
+
+    async sendRequest(address:string){
+        try{
+            return await this.contract.methods.sendRequest().send({from: address});
+        }catch(e){
+            console.log(e);
         }
     }
 }

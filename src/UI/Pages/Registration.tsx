@@ -18,25 +18,25 @@ const RegisterForm = () => {
 
     return (
         <Form onSubmit={registerUserHandler} style={{ width: "15rem", margin: "0 auto", marginTop: "5rem" }}>
-            <h1 className="text-center mb-4">Sign up</h1>
+            <h1 className="text-center mb-4">Регистрация</h1>
 
             <Form.Group className="mb-3">
-                <Form.Label>Login</Form.Label>
-                <Form.Control type="text" placeholder="Enter login" />
+                <Form.Label>Логин</Form.Label>
+                <Form.Control type="text" placeholder="Введите логин" />
             </Form.Group>
 
             <Form.Group className="mb-3">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Label>Пароль</Form.Label>
+                <Form.Control type="password" placeholder="Введите пароль" />
             </Form.Group>
 
             <Form.Group className="mb-3">
-                <Form.Label>Address</Form.Label>
-                <Form.Control type="text" placeholder="Address" />
+                <Form.Label>Адрес в сети блокчейн</Form.Label>
+                <Form.Control type="text" placeholder="Введите адрес" />
             </Form.Group>
 
             <Button variant="dark" type="submit">
-                Submit
+                Подтвердить
             </Button>
         </Form>
     )

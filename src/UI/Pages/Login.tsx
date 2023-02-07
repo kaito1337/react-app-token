@@ -24,20 +24,20 @@ const Login = () => {
 
     return (
         <Form onSubmit={loginUserHandler} style={{ width: "15rem", margin: "0 auto", marginTop: "5rem" }}>
-            <h1 className="text-center mb-4">Sign in</h1>
+            <h1 className="text-center mb-4">Авторизация</h1>
 
             <Form.Group className="mb-3">
-                <Form.Label>Login</Form.Label>
-                <Form.Control type="text" placeholder="Enter login" />
+                <Form.Label>Логин</Form.Label>
+                <Form.Control type="text" placeholder="Введите логин" />
             </Form.Group>
 
             <Form.Group className="mb-3">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Label>Пароль</Form.Label>
+                <Form.Control type="password" placeholder="Введите пароль" />
             </Form.Group>
 
             <Button variant="dark" type="submit">
-                Submit
+                Подтвердить
             </Button>
         </Form>
     )
