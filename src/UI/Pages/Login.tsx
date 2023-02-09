@@ -6,7 +6,7 @@ import Service from "../../Services/Service";
 
 const Login = () => {
 
-    const wallet = 'd'
+    const wallet = ''
     
     const { getUser } = useContext(Context);
     const navigation = useHistory();
