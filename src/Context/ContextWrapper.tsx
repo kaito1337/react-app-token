@@ -16,6 +16,8 @@ export const ContextWrapper: FC<IProps> = ({children}) => {
     }
 
     const [user, setUser] = useState(initialState);
+    const [whitelist, setWhitelist] = useState<Array<string>>([]);
+
 
     const getUser = (user: IUser) => {
         setUser(user);
@@ -29,11 +31,17 @@ export const ContextWrapper: FC<IProps> = ({children}) => {
         await Service.balanceOf(user.wallet);
     }
 
+    const getWhitelist = (whitelist: []) => {
+        setWhitelist(whitelist);
+    }
+
     const values = {
         user,
         getUser,
         getBalance,
-        logoutUser
+        logoutUser,
+        whitelist,
+        getWhitelist
     }
 
     return (

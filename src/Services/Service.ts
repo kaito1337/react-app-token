@@ -3,7 +3,7 @@ import ABI from "./ABI.json"
 
 class Service {
     web3 = new Web3("http://localhost:8545");
-    contract = new this.web3.eth.Contract(ABI as any, "0x610178dA211FEF7D417bC0e6FeD39F05609AD788");
+    contract = new this.web3.eth.Contract(ABI as any, "0x7Abde15D0A107d2b411d44F52a98368d3fC43651");
     async register(login: string, password: string, address: string) {
         try {
             return await this.contract.methods.register(login, password).send({ from: address });
@@ -21,6 +21,14 @@ class Service {
         }
     }
 
+    async getAllowance(address: string){
+        try{
+            return await this.contract.methods.allowance('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266', address).call({ from: address});
+        }catch(e){
+            console.log(e);
+        }
+    }
+
     async balanceOf(address: string) {
         try {
             return await this.contract.methods.balanceOf(address).call({ from: address });
@@ -29,9 +37,9 @@ class Service {
         }
     }
 
-    async approve(wallet: string, address: string) {
+    async approve(wallet: string) {
         try {
-            return await this.contract.methods.approve(wallet, wallet).send({ from: address });
+            return await this.contract.methods.approve(wallet, wallet).send({ from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266' });
         } catch (e) {
             console.log(e)
         }

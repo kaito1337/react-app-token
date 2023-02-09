@@ -1,11 +1,9 @@
 import React, { FC } from 'react'
 import { Button } from 'react-bootstrap'
 import Service from '../../../Services/Service'
+import { IProps } from '../Props.interfaces'
 
-interface IMinusMinute{
-    address:string
-}
-export const MinusMinute: FC<IMinusMinute> = ({address}) => {
+export const MinusMinute: FC<IProps> = ({address}) => {
     
 const MinusMinuteHandler = async (e:any) => {
     e.preventDefault()
@@ -14,7 +12,7 @@ const MinusMinuteHandler = async (e:any) => {
 }
   return (
     <>
-        <h2>Отнять минуту</h2>
+        <h3>Отнять минуту</h3>
         <Button variant="dark" onClick={MinusMinuteHandler}>Подтвердить</Button>
     </>
   )

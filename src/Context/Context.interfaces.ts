@@ -5,6 +5,8 @@ interface IValues {
     getUser(user: IUser): void;
     getBalance(): Promise<void>;
     logoutUser(): void;
+    whitelist: Array<string>;
+    getWhitelist(array: []): void;
 }
 
 interface IProps {

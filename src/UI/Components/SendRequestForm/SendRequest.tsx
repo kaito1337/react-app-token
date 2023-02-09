@@ -1,12 +1,10 @@
 import React, { FC } from 'react'
 import { Button } from 'react-bootstrap';
 import Service from '../../../Services/Service';
+import { IProps } from '../Props.interfaces';
 
-interface ISendRequest {
-    address: string;
-}
 
-export const SendRequest: FC<ISendRequest> = ({ address }) => {
+export const SendRequest: FC<IProps> = ({ address }) => {
 
     const SendRequestHandler = async () => {
         const data = await Service.sendRequest(address);

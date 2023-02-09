@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import { Context } from "../../Context/ContextWrapper";
 import Service from "../../Services/Service";
+import { Approve } from "../Components/ApproveForm/Approve";
 import { BuyToken } from "../Components/BuyTokenForm/BuyToken";
 import { MinusMinute } from "../Components/MinusMinuteForm/MinusMinute";
 import { RequestWhitelist } from "../Components/RequestWhitelistForm/RequestWhitelist";
@@ -39,7 +40,7 @@ const Home = () => {
                         <p>Цена токена: {tokenPrice / 10 ** 18} ETH</p>
                         <p>Вы находитесь в вайтлисте: {user.role === "1" ? "Да" : "Нет"}</p>
                         <Button onClick={balanceUserHandler} variant='dark'>Узнать баланс</Button>
-                        {(user.role !== "3" && "1") ? 
+                        {(user.role !== "3" && user.role !== "1") ? 
                         (
                             <>
                             <SendRequest address={user.wallet}/>
@@ -57,9 +58,7 @@ const Home = () => {
                     (
                         <>
                         <MinusMinute address={user.wallet}/>
-                        <div>
                         <RequestWhitelist address={user.wallet}/>
-                        </div>
                         <Whitelist address={user.wallet}/>
                         </>
                     ) : undefined

@@ -1,12 +1,10 @@
 import React, { FC, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import Service from '../../../Services/Service';
+import { IProps } from '../Props.interfaces';
 
-interface TakeTokenForm {
-    address: string;
-}
 
-export const TakeToken: FC<TakeTokenForm> = ({ address }) => {
+export const TakeToken: FC<IProps> = ({ address }) => {
     const TakeTokenHandler = async (e: any) => {
         e.preventDefault();
         const data = await Service.takeToken(address)
